@@ -43,13 +43,19 @@ def getPrize(id):
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
     q = "SELECT prize FROM allBets WHERE id = " + str(id) + ";"
+    prize = c.execute(q).fetchall()
+    conn.commit()
+    conn.close()
+    return prize
+"""return id with link"""
+def getIdWithLink(link):
+    conn = sqlite3.connect(dbName)
+    c = conn.cursor()
+    q = "SELECT id FROM allBets WHERE link = " + link + ";"
     id = c.execute(q).fetchall()
     conn.commit()
     conn.close()
     return id
-"""return id with link"""
-def getIdWithLink(link):
-
 """insert new line"""
 def newBet(id, user1, user2, link, bet, prize):
     conn = sqlite3.connect(dbName)
