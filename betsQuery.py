@@ -64,6 +64,30 @@ def newBet(id, user1, user2, link, bet, prize):
     c.execute(q, (str(id), user1, user2, link, bet, prize))
     conn.commit()
     conn.close()
+def getDate(id);
+    conn = sqlite3.connect(dbName)
+    c = conn.cursor()
+    q = "SELECT date FROM allBets WHERE id = " + str(id) + ";"
+    date = str(c.execute(q).fetchall()[0][0])
+    conn.commit()
+    conn.close()
+    return date
+def getWin(uid)
+    conn = sqlite3.connect(dbName)
+    c = conn.cursor()
+    q = "SELECT win FROM accounts WHERE uid = " + str(uid) + ";"
+    win = str(c.excute(q)fetchall()[0][0])
+    conn.commit()
+    conn.close()
+    return win
+def getLost(uid)
+    conn = sqlite3.connect(dbName)
+    c = conn.cursor()
+    q = "SELECT lost FROM accounts WHERE uid = " + str(uid) + ";"
+    lost = str(c.excute(q)fetchall()[0][0])
+    conn.commit()
+    conn.close()
+    return lost
 
 
     
