@@ -6,7 +6,7 @@ def getUser1(id):
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
     q = "SELECT user1 FROM allBets WHERE id = " + str(id) + ";"
-    user1 = c.execute(q).fetchall()
+    user1 = str(c.execute(q).fetchall()[0][0])
     conn.commit()
     conn.close()
     return user1
@@ -16,7 +16,7 @@ def getUser2(id):
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
     q = "SELECT user2 FROM allBets WHERE id = " + str(id) + ";"
-    user2 = c.execute(q).fetchall()
+    user2 = str(c.execute(q).fetchall()[0][0])
     conn.commit()
     conn.close()
     return user2
@@ -25,7 +25,7 @@ def getLink(id):
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
     q = "SELECT link FROM allBets WHERE id = " + str(id) + ";"
-    link = c.execute(q).fetchall()
+    link = str(c.execute(q).fetchall()[0][0])
     conn.commit()
     conn.close()
     return link
@@ -34,7 +34,7 @@ def getBet(id):
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
     q = "SELECT bet FROM allBets WHERE id = " + str(id) + ";"
-    bet = c.execute(q).fetchall()
+    bet = str(c.execute(q).fetchall()[0][0])
     conn.commit()
     conn.close()
     return bet
@@ -43,7 +43,7 @@ def getPrize(id):
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
     q = "SELECT prize FROM allBets WHERE id = " + str(id) + ";"
-    prize = c.execute(q).fetchall()
+    prize = str(c.execute(q).fetchall()[0][0])
     conn.commit()
     conn.close()
     return prize
@@ -51,8 +51,8 @@ def getPrize(id):
 def getIdWithLink(link):
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
-    q = "SELECT id FROM allBets WHERE link = " + link + ";"
-    id = c.execute(q).fetchall()
+    q = "SELECT id FROM allBets WHERE link = '" + link + "';"
+    id = int(c.execute(q).fetchall()[0][0])
     conn.commit()
     conn.close()
     return id
