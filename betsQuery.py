@@ -25,5 +25,16 @@ def getPrize(id):
     
 """return id with link"""
 def getIdWithLink(link):
+
+"""insert new line"""
+def newBet(id, user1, user2, link, bet, prize):
+    conn = sqlite3.connect(dbName)
+    c = conn.cursor()
+    q = "INSERT INTO allBets values(?, ?, ?, ?, ?, ?);"
+    c.execute(q, (str(id), user1, user2, link, bet, prize))
+    conn.commit()
+    conn.close()
+
+
     
     
