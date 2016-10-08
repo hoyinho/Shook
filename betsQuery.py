@@ -1,7 +1,10 @@
+import string
+import random
 import sqlite3
 
 dbName = "bets.db"
 
+"""Return user1 with id"""
 def getUser1(id):
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
@@ -57,14 +60,67 @@ def getIdWithLink(link):
     conn.close()
     return id
 """insert new line"""
-def newBet(id, user1, user2, link, bet, prize):
+def newBet( user1, user2, link, bet, prize, date):
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
-    q = "INSERT INTO allBets values(?, ?, ?, ?, ?, ?);"
-    c.execute(q, (str(id), user1, user2, link, bet, prize))
+    q = "INSERT INTO allBets values(?, ?, ?, ?, ?, ?,?);"
+    c.execute(q, (str(getNewID()), user1, user2, newLink(), bet, prize, date))
     conn.commit()
     conn.close()
 
+"""Checking validity of user"""
+def isUser(username):
+    conn = sqlite3.connect(dbName)
+    c = conn.cursor()
+    q = "SELECT uid FROM accounts WHERE username = '" + username + "';"
+    result = c.execute(q).fetchall()
+    conn.commit()
+    conn.close()
+    return len(result) == 1
 
-    
-    
+def correctAccount(username, password):
+    conn = sqlite3.connect(dbName)
+    c = conn.cursor()
+    result = []
+    if (isUser(username)):
+        q = "SELECT uid FROM accounts WHERE username = '" + username + "' and password = '" + password + "';"
+        result = c.execute(q).fetchall()
+    conn.commit()
+    conn.close()
+    return len(result) == 1
+
+def getNewUID():
+    conn = sqlite3.connect(dbName)
+    c = conn.cursor()
+    q = "SELECT uid FROM accounts"
+    result = c.execute(q).fetchall()
+    newID = len(result)
+    conn.commit()
+    conn.close()
+    return newID
+
+def getNewID():
+    conn = sqlite3.connect(dbName)
+    c = conn.cursor()
+    q = "SELECT id FROM allBets"
+    result = c.execute(q).fetchall()
+    newID = len(result)
+    conn.commit()
+    conn.close()
+    return newID
+
+def generateLink(size=6, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
+
+def newLink():
+    conn = sqlite3.connect(dbName)
+    c = conn.cursor()
+    link = generateLink()
+    q = "SELECT id FROM allBets WHERE link= '" + link + "';"
+    result = c.execute(q).fetchall()
+    while (len(result) == 1):
+        link = generateLink()
+        q = "SELECT id FROM allBets WHERE link= '" + link + "';"
+        result = c.execute(q).fetchall()
+    return link
+
