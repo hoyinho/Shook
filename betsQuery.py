@@ -9,7 +9,7 @@ def getUser1(id):
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
     q = "SELECT user1 FROM allBets WHERE id = " + str(id) + ";"
-    user1 = str(c.execute(q).fetchall()[0][0])
+    user1 = int(c.execute(q).fetchall()[0][0])
     conn.commit()
     conn.close()
     return user1
@@ -19,7 +19,7 @@ def getUser2(id):
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
     q = "SELECT user2 FROM allBets WHERE id = " + str(id) + ";"
-    user2 = str(c.execute(q).fetchall()[0][0])
+    user2 = int(c.execute(q).fetchall()[0][0])
     conn.commit()
     conn.close()
     return user2
@@ -64,10 +64,11 @@ def newBet( user1, user2, link, bet, prize, date):
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
     q = "INSERT INTO allBets values(?, ?, ?, ?, ?, ?,?);"
-    c.execute(q, (str(getNewID()), user1, user2, newLink(), bet, prize, date))
+    c.execute(q, (str(getNewID()), user1, user2, link, bet, prize, date))
     conn.commit()
     conn.close()
-def getDate(id);
+    
+def getDate(id):
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
     q = "SELECT date FROM allBets WHERE id = " + str(id) + ";"
@@ -76,20 +77,20 @@ def getDate(id);
     conn.close()
     return date
 
-def getWin(uid)
+def getWin(uid):
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
     q = "SELECT win FROM accounts WHERE uid = " + str(uid) + ";"
-    win = str(c.excute(q)fetchall()[0][0])
+    win = str(c.excute(q).fetchall()[0][0])
     conn.commit()
     conn.close()
     return win
 
-def getLost(uid)
+def getLost(uid):
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
     q = "SELECT lost FROM accounts WHERE uid = " + str(uid) + ";"
-    lost = str(c.excute(q)fetchall()[0][0])
+    lost = str(c.excute(q).fetchall()[0][0])
     conn.commit()
     conn.close()
     return lost
@@ -125,6 +126,15 @@ def getNewUID():
     conn.close()
     return newID
 
+def getUsername(id):
+    conn = sqlite3.connect(dbName)
+    c = conn.cursor()
+    q = "SELECT username FROM accounts WHERE uid = " +str(id)+  ";"
+    username = str(c.execute(q).fetchall()[0][0])
+    conn.commit()
+    conn.close()
+    return username
+
 def getNewID():
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
@@ -149,3 +159,4 @@ def newLink():
         q = "SELECT id FROM allBets WHERE link= '" + link + "';"
         result = c.execute(q).fetchall()
     return link
+
