@@ -75,6 +75,7 @@ def getDate(id);
     conn.commit()
     conn.close()
     return date
+
 def getWin(uid)
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
@@ -83,6 +84,7 @@ def getWin(uid)
     conn.commit()
     conn.close()
     return win
+
 def getLost(uid)
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
@@ -147,4 +149,3 @@ def newLink():
         q = "SELECT id FROM allBets WHERE link= '" + link + "';"
         result = c.execute(q).fetchall()
     return link
-
