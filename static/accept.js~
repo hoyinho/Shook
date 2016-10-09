@@ -1,0 +1,11 @@
+var bet = document.getElementById("bet");
+var prize = document.getElementById("prize");
+var button = document.getElementById("button");
+if (button != null){
+button.addEventListener("click", function(e){
+    var link = window.location.href;
+    link = link.substring(link.length-6, link.length);
+    $.get("/accepted",{link: link},  function(d){});
+    location.reload();
+});
+}
