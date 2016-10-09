@@ -60,11 +60,11 @@ def getIdWithLink(link):
     conn.close()
     return id
 """insert new line"""
-def newBet( user1, user2, link, bet, prize, date):
+def newBet( user1, user2, link, bet, prize, date,status):
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
-    q = "INSERT INTO allBets values(?, ?, ?, ?, ?, ?,?);"
-    c.execute(q, (str(getNewID()), user1, user2, link, bet, prize, date))
+    q = "INSERT INTO allBets values(?, ?, ?, ?, ?, ?,?,?);"
+    c.execute(q, (str(getNewID()), user1, user2, link, bet, prize, date,status ))
     conn.commit()
     conn.close()
     
@@ -158,5 +158,15 @@ def newLink():
         link = generateLink()
         q = "SELECT id FROM allBets WHERE link= '" + link + "';"
         result = c.execute(q).fetchall()
+    conn.commit()
+    conn.close()
     return link
 
+def getStatus(id):
+    conn = sqlite3.connect(dbName)
+    c = conn.cursor()
+    q = "SELECT status FROM allBets WHERE id= " + str(id) + ";"
+    status = str(c.execute(q).fetchall()[0][0])
+    conn.commit()
+    conn.close()
+    return status

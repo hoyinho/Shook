@@ -1,15 +1,27 @@
-from flask import Flask, render_template,session,redirect
+from flask import Flask, render_template,session,redirect,request
 import os
 import utils
+import time
+import json
 import betsQuery
 
 app = Flask(__name__)
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
     return render_template("index.html")
 
-@app.route("/<link>")
-def quickLink():
+@app.route("/makeBet")
+def makeBet():
+    print 123
+    bet = request.args.get('bet')
+    prize = request.args.get('prize')
+    link = betsQuery.newLink()
+    date = "123"
+    betsQuery.newBet(0,0, link,bet,prize,date, "false")
+    print link
+    return json.dumps(link)
+
+    
 @app.route("/signup")
 def signup():
     return render_template("signup.html")
