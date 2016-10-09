@@ -55,10 +55,11 @@ def getIdWithLink(link):
     conn = sqlite3.connect(dbName)
     c = conn.cursor()
     q = "SELECT id FROM allBets WHERE link = '" + link + "';"
-    id = int(c.execute(q).fetchall()[0][0])
+    ID = c.execute(q).fetchall()[0]
+    print ID
     conn.commit()
     conn.close()
-    return id
+    return ID
 """insert new line"""
 def newBet( user1, user2, link, bet, prize, date,status):
     conn = sqlite3.connect(dbName)
@@ -170,3 +171,11 @@ def getStatus(id):
     conn.commit()
     conn.close()
     return status
+
+def updateStatus(id):
+    conn = sqlite3.connect(dbName)
+    c = conn.cursor()
+    q = "UPDATE allBets SET status = 'true' where id=" + str(id) + ";"
+    c.execute(q)
+    conn.commit()
+    conn.close()

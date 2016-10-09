@@ -8,7 +8,29 @@ import betsQuery
 app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("index.html")
+    if "loggedIn" in session and session["loggedIn"]:
+        return render_template("index.html")
+    else:
+        return render_template("signup.html")
+
+@app.route("/<link>")
+def acceptBet(link):
+    if "loggedIn" in session and session["loggedIn"]:
+        link = str(link)
+        ID = betsQuery.getIdWithLink(link)
+        bet = betsQuery.getBet(ID)
+        prize = betsQuery.getPrize(ID)
+        status = betsQuery.getStatus(ID)
+        return render_template("wilson.html", bet = bet, prize = prize, status = status)
+    else:
+        return redirect("/")
+
+@app.route("/accepted")
+def accepted():
+    link = request.args.get("link")
+    ID = betsQuery.getIdWithLink(link)
+    betsQuery.updateStatus(ID)
+    return json.dumps(0)
 
 @app.route("/makeBet")
 def makeBet():

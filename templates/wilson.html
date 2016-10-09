@@ -21,18 +21,19 @@
 			position: relative;
 			top: 70px;
 
-}
+		}
 		
 	</style>
 	
-	<font color = "black" face = "Courier" align = "left">
+	<font color = "black" face = "Courier" align = "center">
 	
 	<h1 align="center">
 	
 		<img src="../static/icon.png" alt="Icon" style="width:75;height:75;">shook<img src="../static/icon.png" alt="Icon" style="width:75;height:75;">
+		
 	</h1>
 	
-	<h2 align="center">
+	<h2>
 	
 		<i>
 		
@@ -130,32 +131,28 @@
 	<font color = "black" face = "Courier" align = "center">
 
 		<div class = "center">
+		  <center>
+		    {% if status == "false" %}
+		    you've been sent a bet! <br><br>
+		    {% endif %}
+		    rules of the bet:<br>
+		    <p id="bet" rows="3" cols="50">{{bet}} </p><br><br>
+		    
+		    extorted prizes:<br>
+		    <p id="bet" rows="3" cols="50">{{prize}} </p><br><br>
+		    
+		    date/deadline:<br>
+		    <p id="bet" rows="3" cols="50">wilson will find a waldo.</p><br><br>
+		    {% if status == "false" %}
+		    <button id="button"> Accept Bet </button>
+		    {% endif %}
+		  </center>
+		  <div class = "div1">
+		    
 		
-			<body>
-
-				<blockquote>
-				
-					 Want to keep track of bets? Make sure they follow through!<br><br>
-
-						Instructions:<br><br>
-						
-							i. Enter who you are and who do you want to challenge<br><br>
-							ii. Enter the rules, prizes, and deadlines for the bet<br><br>
-							iii. After submitting the bet, a custom link will be created<br><br>
-							iv. Copy and send the link to the friend<br><br>
-							v. Friend will open the link and then will be asked to confirm to participate in the bet<br><br>
-							vi. The bet has been activated<br><br>
-				
-				</blockquote>
-			
-			</body>
-			
-			
-
-		<div class = "div1">
-				
 
 	</font>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="../static/accept.js"> </script>
 </html>
 		
