@@ -53,19 +53,9 @@
 	
 		<h2 align = "center" style="float: left;width: 20%;">
 		
-			<a href="index.html">
+			<a href="/">
 			
-				home
-			
-			</a>
-			
-		</h2>
-		
-		<h2 align = "center" style="float: left;width: 20%;">
-		
-			<a href="signup.html">
-			
-				sign up
+				Home
 			
 			</a>
 			
@@ -73,9 +63,9 @@
 		
 		<h2 align = "center" style="float: left;width: 20%;">
 		
-			<a href="bet.html">
+			<a href="/logoff">
 			
-				bet history
+				Log Off
 			
 			</a>
 			
@@ -83,7 +73,17 @@
 		
 		<h2 align = "center" style="float: left;width: 20%;">
 		
-			<a href="instructions.html">
+			<a href="/bet">
+			
+				Bet History
+			
+			</a>
+			
+		</h2>
+		
+		<h2 align = "center" style="float: left;width: 20%;">
+		
+			<a href="/instructions">
 			
 				instructions
 			
@@ -93,9 +93,9 @@
 	
 		<h2 align = "center" style="float: left;width: 20%;"> 
 				
-			<a href="about.html"> 
+			<a href="/about"> 
 				
-				about 
+				About 
 				
 			</a> 
 				
@@ -132,8 +132,14 @@
 
 		<div class = "center">
 		  <center>
+		    {% if closed == "true" %}
+		    The bet has ended<br>
+		    {% endif %}
 		    {% if status == "false" %}
-		    you've been sent a bet! <br><br>
+		    You've been sent a bet by {{user1}}! <br><br>
+		    {% endif %}
+		    {% if status == "true" %}
+		    Player One: {{user1}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Player Two: {{user2}}<br>
 		    {% endif %}
 		    rules of the bet:<br>
 		    <p id="bet" rows="3" cols="50">{{bet}} </p><br><br>
@@ -145,6 +151,9 @@
 		    <p id="bet" rows="3" cols="50">wilson will find a waldo.</p><br><br>
 		    {% if status == "false" %}
 		    <button id="button"> Accept Bet </button>
+		    {% endif %}
+		    {% if status == "true" and closed == "false" %}
+		    <button id="win1"> Player 1 wins </button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <button id= "win2"> Player 2 wins </button>
 		    {% endif %}
 		  </center>
 		  <div class = "div1">

@@ -52,19 +52,9 @@
 	
 		<h2 align = "center" style="float: left;width: 20%;">
 		
-			<a href="index.html">
+			<a href="/">
 			
-				home
-			
-			</a>
-			
-		</h2>
-		
-		<h2 align = "center" style="float: left;width: 20%;">
-		
-			<a href="signup.html">
-			
-				sign up
+				Home
 			
 			</a>
 			
@@ -72,9 +62,9 @@
 		
 		<h2 align = "center" style="float: left;width: 20%;">
 		
-			<a href="bet.html">
+			<a href="/logoff">
 			
-				bet history
+				Log Off
 			
 			</a>
 			
@@ -82,9 +72,19 @@
 		
 		<h2 align = "center" style="float: left;width: 20%;">
 		
-			<a href="instructions.html">
+			<a href="/bet">
 			
-				instructions
+				Bet History
+			
+			</a>
+			
+		</h2>
+		
+		<h2 align = "center" style="float: left;width: 20%;">
+		
+			<a href="/instructions">
+			
+				Instructions
 			
 			</a>
 			
@@ -92,9 +92,9 @@
 	
 		<h2 align = "center" style="float: left;width: 20%;"> 
 				
-			<a href="about.html"> 
+			<a href="/about"> 
 				
-				about 
+				About 
 				
 			</a> 
 				
@@ -143,25 +143,18 @@
 			
 			<body>
 			
-					<body align="center"> <b> login </b> </body>
+			<body align="center"> <b><h1> login</h1> </b> </body>
+			<p id="error"> </p>
 			
-			<form>
+			<br>username: <input type="text" id="loginUsername" placeholder="username">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;password: <input type="password" id="loginPassword" placeholder="password"><br><br>
 			  
-			  <br>username: <input type="text" id="loginusername" value="wilson">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;password: <input type="text" id="loginPassword" value="puppy123"><br><br>
-			  
-			  <input type="submit" value="login">
-			  
-			</form>
-			  
-			<form>
-			
-				<body align="center"> <b> sign up </b> </body>
+			<button id="login">Log In </button>
+			<br>
+			<body align="center"> <b><h1> sign up </h1></b> </body>
 			  <br><br>
-			  new username:<input type="text" id="newusername" value="wilson123"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new password: <input type="text" id="newPassword" value="puppy456"><br><br>
+			  new username:<input type="text" id="newUsername" placeholder="username"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new password: <input type="password" id="newPassword" placeholder="password"><br><br>
 			  
-			  <input type="submit" value="create account">
-			  
-			</form>
+			  <button id="create">Create Account </button>
 
 			</body>
 
@@ -169,6 +162,7 @@
 				
 
 	</font>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="../static/signup.js"> </script>
 </html>
 		

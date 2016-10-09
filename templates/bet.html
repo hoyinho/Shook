@@ -52,19 +52,9 @@
 	
 		<h2 align = "center" style="float: left;width: 20%;">
 		
-			<a href="index.html">
+			<a href="/">
 			
-				home
-			
-			</a>
-			
-		</h2>
-		
-		<h2 align = "center" style="float: left;width: 20%;">
-		
-			<a href="signup.html">
-			
-				sign up
+				Home
 			
 			</a>
 			
@@ -72,9 +62,9 @@
 		
 		<h2 align = "center" style="float: left;width: 20%;">
 		
-			<a href="bet.html">
+			<a href="/logoff">
 			
-				bet history
+				Log Off
 			
 			</a>
 			
@@ -82,9 +72,19 @@
 		
 		<h2 align = "center" style="float: left;width: 20%;">
 		
-			<a href="instructions.html">
+			<a href="/bet">
 			
-				instructions
+				Bet History
+			
+			</a>
+			
+		</h2>
+		
+		<h2 align = "center" style="float: left;width: 20%;">
+		
+			<a href="/instructions">
+			
+				Instructions
 			
 			</a>
 			
@@ -92,9 +92,9 @@
 	
 		<h2 align = "center" style="float: left;width: 20%;"> 
 				
-			<a href="about.html"> 
+			<a href="/about"> 
 				
-				about 
+				About 
 				
 			</a> 
 				
@@ -131,8 +131,40 @@
 
 		<div class = "center">
 		
-			<body>
-
+			<body align = "left">
+			  <h1 align = "left"> Wins </h1>
+			  {% for x in wonBets %}
+			  <h2 align="left">
+			    On {{x[2]}}, {{username}} betted that:
+			   <br>
+			   &nbsp; &nbsp; {{x[0]}}
+			  </h2>
+			  <h3 align="left">
+			    and won:
+			    <br>
+			    &nbsp; &nbsp; {{x[1]}}
+			    <br>
+			    <br>
+			  </h3>
+			  {% endfor %}
+			  <br>
+			  <h1 align="left">
+			    Losses
+			  </h1>
+			  {% for x in wonBets %}
+			  <h2 align = "left">
+			    On {{x[2]}}, {{username}} betted that:
+			   <br>
+			   &nbsp; &nbsp; {{x[0]}}
+			  </h2>
+			  <h3 align = "left">
+			    and lost:
+			    <br>
+			    &nbsp; &nbsp; {{x[1]}}
+			    <br>
+			    <br>
+			  </h3>
+			  {% endfor %}
 				<blockquote>
 				
 					
@@ -143,7 +175,7 @@
 			
 			<body align="center">
 			
-			<b>UNDER CONSTRUCTION</b>
+
 
 			</body>
 
